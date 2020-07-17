@@ -1,0 +1,19 @@
+{
+  "name": "cequejemange",
+  "version": "1.0.0",
+  "description": "Une application pour traquer les intolérances alimentaires",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natoine/cequejemange.git"
+  },
+  "author": "natoine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natoine/cequejemange/issues"
+  },
+  "homepage": "https://github.com/natoine/cequejemange#readme"
+}
