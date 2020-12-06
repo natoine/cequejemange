@@ -19,7 +19,7 @@ app.get("/whatismyname", function(request, response) {
         if(err) console.log("error" , err);
         else {
             console.log("connected !");
-            client.db("otakuotake").collection("supersayans").find().toArray(function(err, items) {
+            client.db("cequejemange").collection("meals").find().toArray(function(err, items) {
                 if(err) throw err;     
                 response.send(items[0].name);          
             });
