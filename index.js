@@ -2,28 +2,24 @@
 
 const express = require('express');
 const app = express();
+app.use(express.urlencoded({extended: true}));//gonna be replaced by express.json() soon 
 
 const port = process.env.PORT || 3000 ;
-var nbvisit = 0 ;
 
 const mongodb = require('mongodb');
-
 const urimongo = require("./resources/secret/databaseconfig.js").url ;
-console.log("uri mongodb", urimongo);
 
 //serves static files
 app.use(express.static('resources/public'));
 
-app.get("/whatismyname", function(request, response) {
+app.post("/addfood", function(request, response){
+    var eatenfood = {};
+    eatenfood.name = request.body.foodname ;
+    eatenfood.declarationdate = Date.now();
     mongodb.MongoClient.connect(urimongo, { useUnifiedTopology: true }, function (err, client) {
-        if(err) console.log("error" , err);
-        else {
-            console.log("connected !");
-            client.db("cequejemange").collection("meals").find().toArray(function(err, items) {
-                if(err) throw err;     
-                response.send(items[0].name);          
-            });
-        }
+        var eatenfoodcollection = client.db("cequejemange").collection("eatenfood");
+        eatenfoodcollection.insertOne(eatenfood);
+        response.end();
     });
 });
 
